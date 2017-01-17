@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    </head>
+<body>
+<h1>{{ visual }} for {{ folder }}</h1>
+<div id="vis"></div>
+<script>var piazza = {{ data | tojson }}</script>
+
+{% for src in js %}
+<script src="{{ root + '/static/' + src if src else url_for('static', filename = src)  }}"></script>
+{% endfor %}
+
+</body>
+</html>

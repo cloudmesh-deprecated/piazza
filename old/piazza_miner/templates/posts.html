@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    </head>
+    
+<body>
+    {% for post in posts %}
+        <h3>{{ post.subject | safe }}</h3>
+        <h4>Author: {{ post.author or '(anonymous)' }}</h4>
+        <h4>Created: {{ post.created | clean_date }} (last edit {{ post.last_edited | clean_date }})</h4>
+        <h4>Type: {{ post.type }}</h4>
+        <p>{{ post.content | safe }}</p>
+        {% if comments %}
+            {% for child in post.children recursive %}
+                <ul>
+                {% if(child['type'] != 'i_answer' and child['type'] != 's_answer') %}
+                    <h4>Author: {{ child.name or '(anonymous)' }}</h4>
+                    <h4>Replied: {{ child.created | clean_date }}</h4>
+                    <p>{{ child.subject | safe }}</p>
+                    <ul>{{ loop(child.children) }}</ul>
+                {% endif %}
+                </ul>
+            {% endfor %}
+        {% endif %}
+        <hr>
+    {% endfor %}
+</body>
+</html>

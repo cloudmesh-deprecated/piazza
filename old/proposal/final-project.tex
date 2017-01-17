@@ -1,0 +1,177 @@
+% This is "sig-alternate.tex" V2.0 May 2012
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass{sig-alternate}
+
+
+
+\begin{document}
+%
+% --- Author Metadata here ---
+%\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Project: Data Mining Piazza}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{2} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Gary Bean \titlenote{undergraduate}\\
+    \email{gbean@indiana.edu}\\
+    HID: F16-IU-2000\\
+    Gitlab: gbean
+    \
+% 2nd. author
+\alignauthor
+Tim Whitson \titlenote{undergraduate}\\
+    \email{tdwhitso@indiana.edu}\\
+    HID: F16-IU-2007\\
+    Gitlab: whitstd
+}
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+\begin{abstract}
+Electronic learning tools have become ubiquitous in modern classrooms. One such tool is Piazza, a discussion board where students can interact with each other and ask questions of their instructors. While student/instructor discussion is the main goal of Piazza, the data produced from the discussions can be just as valuable. For this project, we will be data mining Piazza discussions, using Python, and analyzing that data to produce relevant visuals and statistics, using d3js. We wrote three different Python tools for the purposes of:
+\begin{enumerate}
+  \item Extracting data from Piazza
+  \item Scrubbing the data to get important and readable information
+  \item Analyzing the data 
+\end{enumerate}
+
+To begin, we wrote a Python program to mine data from Piazza. Piazza has an internal API that it communicates with via XMLHttpRequest, or AJAX, requests to retrieve and display information to the user. We were able to track these requests by monitoring the network requests in Google Chrome Developer Tools. The network requests also display the POST information that is sent to the server. Using the URLs and POST request data, we were able to recreate Piazza's API using the third-party Python "requests" module.
+
+Since the data that is returned by the Piazza API is in JSON format, we wanted to pull out only the pertinent information. JSON data is slightly more complex than data such as CSV, so we wrote Python tools to parse the JSON. The idea behind these tools were for them to be as flexible as possible, so we could feed the data into various types of visualizations.
+\end{abstract}
+
+% A category with the (minimum) three required fields
+%\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+\section{Introduction}
+Educational Data Mining (EDM) is emerging field of study that is ultimately using large amounts of data to gain insightful knowledge on how we can improve the education system. According to Education Data Mining: A Review of the State-of-the-Art, "EDM is concerned with developing methods to explore the unique types of data in educational settings and, using these methods, to better understand students and the settings in which they learn," \cite{review}. There are a variety of data that this field of study will collect such as: "interactions of individual students with an educational system (e.g., navigation behavior, input to quizzes and interactive exercises) ... data from collaborating students (e.g., text chat), administrative data (e.g., school, school district, teacher), and demographic data (e.g., gender, age, school grades)," \cite{EDM}. The data from students collaborating with each other and asking their professor questions on a online discussion board will give us understanding and insights, and is one example of how EDM can be utilized in the online classroom. 
+
+By data mining the student/teacher discussion on Piazza, we will gain valuable information for every stakeholder. Data that will come out of this include: individual and class statistics (e.g., completion percentages, times), student problem areas, external link usage, classifications, word cloud, and user interaction. From all of this data and analytics, we hope to improve the learning process for the student and to improve the instructing process for the professor. Analyzing this data will allow teachers to see how much a student participates over the duration of a course. Mining this data can also help educational institutions see how quickly and often instructors are communicating with their students. 
+
+
+\section{Artifacts}
+\begin{itemize}
+    \item Gitlab code
+    \item Project paper
+\end{itemize}
+
+
+
+\section{Conclusions}
+
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{references}  % sigproc.bib is the name of the Bibliography in this case
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+% ACM needs 'a single self-contained file'!
+%
+%APPENDICES are optional
+%\balancecolumns
+%\balancecolumns % GM June 2007
+% That's all folks!
+\end{document}

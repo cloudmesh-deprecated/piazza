@@ -1,0 +1,5 @@
+requests
+docopt
+bs4
+pymongo
+Flask

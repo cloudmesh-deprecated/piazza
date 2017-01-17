@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        {% for field in fields %}
+        <th>{{ field }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in rows %}
+        <tr>
+            {% for key in fields %}
+            <td>
+                {{ row[key] if key in row else '' }}
+            </td>
+            {% endfor %}
+        <tr>
+    {% endfor %}
+</table>
