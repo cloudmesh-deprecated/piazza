@@ -250,6 +250,7 @@ class PiazzaData:
             if(comments):
                 length = 100
                 offset = len('Content: ')
+                indent = ''
             
                 for comment in self.iter_comments(post):
                     if(comment['type'] == 'followup'):
