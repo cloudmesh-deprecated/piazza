@@ -174,7 +174,7 @@ Get list of folders::
 
     piazza folders
     
-Output:
+Output::
 
     =====================
     |    folder | posts |
