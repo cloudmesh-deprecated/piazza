@@ -3,6 +3,7 @@
 Usage:
     piazza.py get <folder> [--comments]
     piazza.py show <folder> <visual>
+    piazza.py folders
     piazza.py posts <cids> [--comments]
     piazza.py history (--user=<user>|--uid=<uid>) [--detailed --comments]
     piazza.py completion (--user=<user>|--uid=<uid>)

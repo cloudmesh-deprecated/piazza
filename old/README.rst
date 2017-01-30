@@ -167,6 +167,25 @@ Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
 
 Image: `participation.png <images/participation.png>`_
 
+Get Folders
+^^^^^^^^^^^^^^^^
+
+Get list of folders::
+
+    piazza folders
+    
+Output:
+
+    =====================
+    |    folder | posts |
+    ============+========
+    | logistics |    35 |
+    ============+========
+    |     polls |     2 |
+    ============+========
+    ...
+   
+
 Get Posts
 ^^^^^^^^^^^^^^^^
 

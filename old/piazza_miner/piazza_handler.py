@@ -140,6 +140,14 @@ class PiazzaHandler:
         else:
             t = self.html_from_template('visual.html', visual = visual, folder = folder, data = d.data, js = js, root = 'file://' + os.path.dirname(sys.modules[__name__].__file__))
             self.write_file('folders/' + folder + '/' + visual_trimmed + '.html', t)
+            
+    def folders(self, flask = False):
+        '''Display available folders
+        '''
+        d = PiazzaData(self.mongo.find('posts', {}, {'_id': 0})).get_folders() 
+        
+        if(not flask):
+            d.print_table()      
     
     @no_flask
     def posts(self, cids = '', comments = False):

@@ -63,6 +63,18 @@ class PiazzaData:
             tags.append({'key': k, 'value': v})
                     
         return PiazzaData({'tags': tags})
+        
+    def get_folders(self):
+        folders = {}
+        
+        for post in self.data:
+            for folder in post['folders']:
+                if folder in folders:
+                    folders[folder] += 1
+                else:
+                    folders[folder] = 1
+                    
+        return PiazzaData([{'folder': k, 'posts':v} for k, v in folders.iteritems()])
           
     def user_interaction(self, uid):
         '''Get user interactions
