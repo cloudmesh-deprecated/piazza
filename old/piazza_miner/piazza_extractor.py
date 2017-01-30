@@ -1,5 +1,6 @@
 import getpass, json, sys, os, time
 import requests
+import grequests
 
 from piazza_mongo import PiazzaMongo
 import config
@@ -93,12 +94,33 @@ class PiazzaExtractor:
         m = PiazzaMongo()
         m.update_one('meta', {}, {'$set': {'updated': time.time()}})
         
-        posts = []
+        class Progress:
+            '''Class for tracking download progress
+            '''
+            def __init__(self, total):
+                self.count = 0
+                self.total = total
 
-        for index, post in enumerate(folder_feed):
+            def update(self, r, **kwargs):
+                self.count += 1
+                sys.stdout.write('\r')
+                sys.stdout.write(str(self.count) + '/' + str(self.total))
+                sys.stdout.flush()
+                if(self.count == self.total): print
+                    
+                return r
+                
+        prog = Progress(len(folder_feed))       
+        reqs = []
+        for post in folder_feed:
             data = json.dumps({'method': 'content.get', 'params': {'cid': post['id'], 'nid': self.class_id}})
-            r = requests.post(self.api_url, data = data, cookies = self.login_cookie)
+            req = grequests.post(self.api_url, data = data, callback = prog.update, cookies = self.login_cookie)
+            reqs.append(req)
             
+        responses = grequests.map(reqs)
+               
+        posts = []
+        for r in responses:
             r = r.json()['result']
             
             post = {}
@@ -110,6 +132,7 @@ class PiazzaExtractor:
             post['cid'] = r['nr']
             post['num_favorites'] = r['num_favorites']
             post['good_tags'] = len(r['tag_good'])
+            post['answered'] = r['no_answer'] == 0 if 'no_answer' in r else True
             
             original_post = r['history'][-1]
             recent_post = r['history'][0]
@@ -120,8 +143,6 @@ class PiazzaExtractor:
             post['content'] = recent_post['content']
             
             def trim_children(c):
-                '''Get rid of extraneous items in "children" field
-                '''
                 r = []
                 for child in c:
                     d = dict((key,value) for key, value in child.iteritems() if key in ['uid', 'created', 'updated', 'type', 'children', 'subject'])
@@ -130,13 +151,7 @@ class PiazzaExtractor:
                     
                 return r
                     
-            post['children'] = trim_children(r['children'])        
-
-            # update progress
-            sys.stdout.write('\r')
-            sys.stdout.write(str(index + 1) + '/' + str(len(folder_feed)))
-            sys.stdout.flush()
-            if(index + 1 == len(folder_feed)): print
+            post['children'] = trim_children(r['children'])
             
             posts.append(post)
                 
@@ -144,8 +159,8 @@ class PiazzaExtractor:
         
         m.drop('posts')
         m.insert_many('posts', posts)
-
-        return posts
+        
+        print 'Update Complete.'
         
     def add_names(self, posts):
         '''Add names to posts based on uid

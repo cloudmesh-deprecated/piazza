@@ -300,6 +300,12 @@ class PiazzaHandler:
             return render_template('table.html', fields = d.get_fields(), rows = d.data)
         else:
             d.print_table(order = ['name', 'uid'])
+            
+    def unanswered(self):
+        '''List unanswered posts
+        '''
+        d = PiazzaData(self.mongo.find('posts', {'answered': False}))
+        d.print_posts()
         
     @no_flask    
     def flask(self):

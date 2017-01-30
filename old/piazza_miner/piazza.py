@@ -13,6 +13,7 @@ Usage:
     piazza.py find <name>
     piazza.py interaction (--user=<user>|--uid=<uid>)
     piazza.py activity [--sort=<sort>]
+    piazza.py unanswered
     piazza.py install
     piazza.py setup
     piazza.py update

@@ -1,4 +1,5 @@
 requests
+grequests
 docopt
 bs4
 pymongo
