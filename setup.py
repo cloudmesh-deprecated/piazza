@@ -14,13 +14,13 @@ def read(filename):
 version = "0.0.7"
 
 install_requires = read("requirements.txt").split()
-long_description = read('README.md')
+long_description = read('README.rst')
 
 
 setup(
     name='cloudmesh-piazza',
     version=version,
-    url='https://gitlab.com/cloudmesh_fall2016/piazza',
+    url='https://github.com/cloudmesh/piazza',
     license='Apache 2.0',
     author='Gregor von Laszewski, Tim Whitson',
     author_email='laszewski@gmail.com',
@@ -43,7 +43,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'piazza = cloudmesh_piazza.piazza:main',
+            'piazza = cloudmesh.piazza.piazza:main',
         ],
     }
+    namespace_packages=['cloudmesh'],    
 )
