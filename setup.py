@@ -3,8 +3,7 @@ from __future__ import print_function
 import codecs
 import os
 import re
-from setuptools import setup
-
+from setuptools import find_packages, setup
 
 def read(filename):
     """Read and return `filename` in root dir of project and return string"""
@@ -27,7 +26,7 @@ setup(
     install_requires=install_requires,
     description="Command line client for Piazza",
     long_description=long_description,
-    packages=['cloudmesh_piazza'],
+     packages=find_packages(),
     package_data = {
         'cloudmesh.piazza': [
             'includes/*',
