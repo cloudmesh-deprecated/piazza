@@ -2,7 +2,7 @@ import getpass, json, sys, os, time
 import requests
 import grequests
 
-from piazza_mongo import PiazzaMongo
+from cloudmesh.piazza.piazza_mongo import PiazzaMongo
 import config
 
 class PiazzaExtractor:

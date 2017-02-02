@@ -1,10 +1,10 @@
 import os, sys, datetime
 
 from flask import Flask, render_template, request, send_from_directory
-from piazza_extractor import PiazzaExtractor
-from piazza_data import PiazzaData
-from piazza_setup import PiazzaSetup
-from piazza_mongo import PiazzaMongo
+from cloudmesh.piazza.piazza_extractor import PiazzaExtractor
+from cloudmesh.piazza.piazza_data import PiazzaData
+from cloudmesh.piazza.piazza_setup import PiazzaSetup
+from cloudmesh.piazza.piazza_mongo import PiazzaMongo
 
 from docopt_parser import DocParser, no_flask
 

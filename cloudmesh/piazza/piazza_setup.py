@@ -1,5 +1,5 @@
 import os, sys, shutil, getpass, ConfigParser
-from piazza_mongo import PiazzaMongo
+from cloudmesh.piazza.piazza_mongo import PiazzaMongo
 import config
 
 class PiazzaSetup:

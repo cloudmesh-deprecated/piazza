@@ -37,7 +37,7 @@ Arguments:
     name:           user name
     query:          search query
 '''
-from piazza_handler import PiazzaHandler
+from cloudmesh.piazza.piazza_handler import PiazzaHandler
        
 def main():
     PiazzaHandler(__doc__)    
