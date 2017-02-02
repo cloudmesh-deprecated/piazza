@@ -1,10 +1,14 @@
 Piazza Data Mining
 ==================
 
-* Gary Bean (F16-IU-2000) @gbean
-* Tim Whitson (F16-IU-2007) @whitstd
+* Tim Whitson @whitstd
+* Gregor von Laszewski (laszewski@gmail.com) 
 
-Improvements to documentation: Gregor von Laszewski (laszewski@gmail.com)
+Contributors:
+
+* Gary Bean: contributed early prototype of some javascript code, that was improved and
+  integrated by the main team.  
+
   
 Installation
 ------------
