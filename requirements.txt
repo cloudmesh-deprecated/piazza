@@ -1,3 +1,7 @@
 pyyaml
 requests
 docopt
+grequests
+bs4
+pymongo
+Flask

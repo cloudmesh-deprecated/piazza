@@ -28,6 +28,12 @@ setup(
     description="Command line client for Piazza",
     long_description=long_description,
     packages=['cloudmesh_piazza'],
+    package_data = {
+        'cloudmesh.piazza': [
+            'includes/*',
+            'static/*',
+            'templates/*'
+    ]},    
     platforms='any',
     classifiers = [
         'Programming Language :: Python',
@@ -45,6 +51,6 @@ setup(
         'console_scripts': [
             'piazza = cloudmesh.piazza.piazza:main',
         ],
-    }
+    },
     namespace_packages=['cloudmesh'],    
 )
