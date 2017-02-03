@@ -19,13 +19,9 @@ Limitations:
 Clone Gitlab Repository
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-First you have to clone the repository either with::
+First you have to clone the repository::
    
-    git clone git@gitlab.com:cloudmesh/piazza.git
-
-or::
-
-    git clone https://gitlab.com/cloudmesh/piazza.git
+    git clone https://github.com/cloudmesh/piazza.git
 
 Install pip if Necessary
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,8 +35,9 @@ Install Piazza Miner from setup.py
 
 From within the project directory call the install::
 
-    cd piazza/project_piazza
     sudo python setup.py install
+    
+*note: due to gevent compilation, install may take a few minutes.
     
 Install MongoDB (if not already installed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

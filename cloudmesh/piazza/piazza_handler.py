@@ -6,7 +6,7 @@ from cloudmesh.piazza.piazza_data import PiazzaData
 from cloudmesh.piazza.piazza_setup import PiazzaSetup
 from cloudmesh.piazza.piazza_mongo import PiazzaMongo
 
-from docopt_parser import DocParser, no_flask
+from cloudmesh.piazza.docopt_parser import DocParser, no_flask
 
 class PiazzaHandler:
     def __init__(self, doc):
