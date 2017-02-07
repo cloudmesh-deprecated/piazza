@@ -110,14 +110,15 @@ class PiazzaExtractor:
                     
                 return r
                 
-        prog = Progress(len(folder_feed))       
+        prog = Progress(len(folder_feed))
+        session = requests.Session()     
         reqs = []
         for post in folder_feed:
             data = json.dumps({'method': 'content.get', 'params': {'cid': post['id'], 'nid': self.class_id}})
-            req = grequests.post(self.api_url, data = data, callback = prog.update, cookies = self.login_cookie)
+            req = grequests.post(self.api_url, data = data, callback = prog.update, cookies = self.login_cookie, session=session)
             reqs.append(req)
             
-        responses = grequests.map(reqs)
+        responses = grequests.imap(reqs, size=2)
                
         posts = []
         for r in responses:
