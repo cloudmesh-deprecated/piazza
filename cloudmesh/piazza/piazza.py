@@ -18,15 +18,19 @@ Usage:
     piazza.py setup
     piazza.py update
     piazza.py flask
+    piazza.py config <section> <item> --value=<value>
+    piazza.py --version
 
 Options:
     -h --help
+    -v --version            version information
     --comments              show/use/include comments
     --detailed              show full post information
     --role=<role>           class role (student, instructor, etc) [default: student]
     --author=<author>       author name/id
     --sort=<sort>           column to sort results by
     --posted=<posted>       filter by whether or not user posted "yes" or "no"
+    --value=<value>         new value
     
 Arguments:
     folder:         Piazza folder
@@ -36,6 +40,8 @@ Arguments:
     uid:            user id
     name:           user name
     query:          search query
+    section:        config section
+    item:           config item
 '''
 from cloudmesh.piazza.piazza_handler import PiazzaHandler
        

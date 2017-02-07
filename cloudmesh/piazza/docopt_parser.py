@@ -6,22 +6,32 @@ from flask import request
 class DocParser:
     def __init__(self, doc):
         self.doc = doc
+        
+    def get_arguments(self):
+        '''Get docopt arguments
+        Returns:
+            (list) -- docopt arguments
+        '''
+        self.arguments = docopt(self.doc)
+        
+        return self.arguments
            
     def parse_doc(self, handler):
         '''Run handler function based on docopt
         Args:
             handler (object) -- object whose methods will be used
-        ''' 
-        arguments = docopt(self.doc)
+        '''
+        if(not hasattr(self, 'arguments')):
+            self.arguments = docopt(self.doc)
         
-        lines = self.get_section('usage') 
+        lines = self.get_section('usage')
         for line in lines:
             pieces = line.split()[1:]
             func = pieces.pop(0)
             kwargs = {}
             
-            if(arguments[func]):
-                for key, value in arguments.iteritems():
+            if(self.arguments[func]):
+                for key, value in self.arguments.iteritems():
                     if(value and any(key in p for p in pieces)):
                         k = re.sub('[-<>]', '', key)
                         kwargs[k] = value
@@ -148,7 +158,7 @@ class DocParser:
         return [x.strip() for x in lines[begin:end]]
         
 def no_flask(func):
-    '''decorater function to prevent flask routing on function
+    '''decorator function to prevent flask routing on function
     Args:
         func (function) -- wrapped function
     Returns:

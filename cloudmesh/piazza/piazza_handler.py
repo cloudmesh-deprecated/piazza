@@ -1,4 +1,5 @@
 import os, sys, datetime
+import pkg_resources
 
 from flask import Flask, render_template, request, send_from_directory
 from cloudmesh.piazza.piazza_extractor import PiazzaExtractor
@@ -8,34 +9,46 @@ from cloudmesh.piazza.piazza_mongo import PiazzaMongo
 
 from cloudmesh.piazza.docopt_parser import DocParser, no_flask
 
+import cloudmesh.piazza.config as config
+
 class PiazzaHandler:
     def __init__(self, doc):
         '''Check setup, create mongo instance,
             create Flask context, then parse the docopt
         '''
+        self.docparse = DocParser(doc)
+        arguments = self.docparse.get_arguments()   
+        
         self.install_complete = False
         self.setup_complete = False
         self.update_complete = False
+
+        if(arguments['--version']):
+            version = pkg_resources.get_distribution('cloudmesh-piazza').version
+            print 'Cloudmesh Piazza current version: ' + version
+            return
         
-        if(PiazzaSetup().needs_install()):
-            self.install()
-            self.install_complete = True
-            return
-            
-        if(PiazzaSetup().needs_setup()):
-            self.setup()
-            self.setup_complete = True
-            return
+        if(not arguments['install']):
+            if(PiazzaSetup().needs_install()):
+                self.install()
+                self.install_complete = True
+                return
+        
+        if(not arguments['setup']):    
+            if(PiazzaSetup().needs_setup()):
+                self.setup()
+                self.setup_complete = True
+                return
 
         self.mongo = PiazzaMongo()
         
-        if(self.mongo.check_update()):
-            self.update()
-            self.update_complete = True
+        if(not arguments['update']):
+            if(self.mongo.check_update()):
+                self.update()
+                self.update_complete = True
             
-        self.app = Flask(__name__)
+        self.app = Flask(__name__)      
         
-        self.docparse = DocParser(doc)
         self.docparse.parse_doc(self)         
             
     def add_filters(self):
@@ -306,6 +319,17 @@ class PiazzaHandler:
         '''
         d = PiazzaData(self.mongo.find('posts', {'answered': False}))
         d.print_posts()
+        
+    @no_flask
+    def config(self, section = '', item = '', value = ''):
+        '''Change configuration value
+        Args:
+            section (string) -- config section
+            item (string) -- config item to replace
+            value (string) --  new value
+        '''
+        config.change(section, item, value)
+        print 'Configuration change complete.'
         
     @no_flask    
     def flask(self):

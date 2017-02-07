@@ -49,10 +49,12 @@ On Ubuntu do::
    
     bash quickstart/ubuntu.sh
     
-On Mac OS X do::
+On Mac OS X do**::
     
     cd quickstart
     sudo bash mac.sh
+    
+** Currently, Mac OSX quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data folders.
     
 Install Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
@@ -90,24 +92,18 @@ When entering commands in the command line, note that the --user flag can be giv
 
 ID::
 
-    piazza history --uid is6mhd3ojax6e5
+    piazza history --uid is6mhd3oax6e5
 
-    User: Timothy Whitson
+    User: Lee Riley
 
 Search::
 
-    piazza history --user ti
+    piazza history --user le
 
     Multiple users found. Select one:
-    0) Name: Aditya Tanikanti, ID: is69ir89d4S
-    1) Name: Avadhoot Agasti, ID: is6lom66ah456j
-    2) Name: Claude Bernard Augustin, ID: is6prr8ps1v1xi
-    3) Name: Neelam Tikone, ID: igwsx64x3qb682
-    4) Name: Niteesh Kumar Akurati, ID: is6pcsy0etr1j7
-    5) Name: Nitin Sharma, ID: i4u5elhtfg14xr
-    6) Name: Shweta Bhartia, ID: is6prnkbzvy1v7
-    7) Name: Timothy Whitson, ID: is6mhd3ojax6e5
-    8) Name: Vidya Patil, ID: is6n7b7ylJ9
+    0) Name: Lee Riley, ID: is6mhd3oax6e5
+    1) Name: Lee Tao, ID: is6lom66ah46j
+    2) Name: Leslie Ann, ID: is6mhd5oay3c2
 
 Install Piazza Miner
 ^^^^^^^^^^^^^^^^^^
@@ -198,16 +194,16 @@ Example::
     
     >piazza posts "275, 110"
     
-    Subject: Tim Whitson - Where are Big Data jobs now and in the future?
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Lee Riley - Where are Big Data jobs now and in the future?
+    Author: Lee Riley
+    Author ID: is6mhd3oax6e5
     Post CID: 275
     Created: Sep 02, 2016 05:23PM
     Content: ...
     
-    Subject: Whitson, Timothy - Why Big Data is interesting to me
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Riley, Lee - Why Big Data is interesting to me?
+    Author: Lee Riley
+    Author ID: Lee Riley, ID: is6mhd3oax6e5
     Post CID: 110
     Created: Aug 26, 2016 03:35AM
     Content: ...
@@ -231,12 +227,12 @@ Find users by name::
     
 Example::    
 
-    >piazza find timothy
+    >piazza find "lee riley"
     
     ====================================================================================
     |            name | admin | photo |    us |    role | facebook_id |             id |
     ==================+=======+=======+=======+=========+=============+=================
-    | Timothy Whitson | False |  None | False | student |        None | is6mhd3ojax6e5 |
+    |       Lee Riley | False |  None | False | student |        None |  is6mhd3oax6e5 |
     ====================================================================================
 
    
@@ -251,12 +247,12 @@ Example::
 
     >piazza search subjects "big data"
     
-    Subject: Jing Chen: Big Data Technologies
-    Author: Jing Chen
-    Author ID: ijbn2h6lVdQ
+    Subject: Ann Chen: Big Data Technologies
+    Author: Ann Chen
+    Author ID: ijbn2h6lNdQ
     Post CID: 1719
     Created: Dec 08, 2016 08:49PM
-    Content: There are various new technologies in big data application and analysis including k-mean, hadoop and MapReduce...   
+    Content: There are various new technologies in big data application...  
     ...
 
 
@@ -276,11 +272,11 @@ Shows students who have posted in a folder::
     ========================================================================
     |                             name |            uid | posts | comments |
     ===================================+================+=======+===========
-    |                Emmanuel Ngalamou | is7t457w1wg3a5 |     3 |        6 |
+    |                   Nathan Emanuel | is7t457w1xg3a5 |     3 |        6 |
     ===================================+================+=======+===========
-    |                     Sushmita Ray | is6bgmnu3hl753 |     2 |        9 |
+    |                        Ray Sushi | is6bgmnu3hk753 |     2 |        9 |
     ===================================+================+=======+===========
-    |                         Vibhatha | is6ib4tuhum5y4 |     2 |        6 |
+    |                         Pooja He | is6ib4tujum5y4 |     2 |        6 |
     ===================================+================+=======+===========
     ...
 
@@ -302,9 +298,9 @@ In piazza.cfg::
     
 Output::
 
-    >piazza completion --user tim
+    >piazza completion --user "lee riley"
     
-    User: Timothy Whitson
+    User: Lee Riley
     Completion: 100.0%
     "d1" completed on 2016-08-26T03:35:43Z
     "d3" completed on 2016-09-02T17:23:07Z
@@ -327,20 +323,20 @@ Show user post history::
 
 Example::
 
-    >piazza history --user tim
+    >piazza history --user "lee riley"
     
-    User: Timothy Whitson
+    User: Lee Riley
     User has 15 posts:
-    Posted "Tim Whitson - Sensors" in d14 on Dec 03, 2016 06:57PM
+    Posted "Lee Riley - Sensors" in d14 on Dec 03, 2016 06:57PM
     ...
     
 --detailed::
     
-    >piazza history --user tim --detailed
+    >piazza history --user "lee riley" --detailed
     
-    Subject: Tim Whitson - Sensors
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Lee Riley - Sensors
+    Author: Lee Riley
+    Author ID: is6mhd3oax6e5
     Post CID: 1668
     Created: Dec 12, 2016 04:48PM
     Content: Sensors provide the ability to gather data remotely...
@@ -358,17 +354,17 @@ Lists interaction with other users, descending.
 
 ::
 
-    >piazza interaction --user gregor
+    >piazza interaction --user greg
     
-    User: Gregor von Laszewski
+    User: Greg Stephens
     =============================================================
     |                             name |            uid | count |
     ===================================+================+========
-    |                  Jerome Mitchell | irqfz0l9tur1hv |    64 |
+    |                     Jeremy Myers | irqfz0k9tur1hv |    64 |
     ===================================+================+========
-    |                   Diana Maltsman |    isb62dc7Dd7 |    40 |
+    |                      Don Maltman |    isb62dc7Dd7 |    40 |
     ===================================+================+========
-    |                          Lan Lan | is6proyk8es1vy |    34 |
+    |                         Lan Qing | is6projk8es1vy |    34 |
     ===================================+================+========
     ...
 
@@ -389,12 +385,27 @@ Display activity sorted by likes::
     ============================================================================================
     |                             name |            uid | posts | comments | likes | favorites |
     ===================================+================+=======+==========+=======+============
-    |                     Mark McCombe |    is6pkgg1YYG |    14 |       79 |     7 |         3 |
+    |                        Lee Riley |  is6mhd3oax6e5 |    14 |       79 |     7 |         3 |
     ===================================+================+=======+==========+=======+============
-    |             Gregor von Laszewski | is28edmcmde4ht |   187 |      687 |     6 |        84 |
+    |                    Greg Stephens | is28edmcmhe4ht |   187 |      687 |     6 |        84 |
     ===================================+================+=======+==========+=======+============
     |                      (anonymous) |           None |    28 |        0 |     4 |         3 |
     ===================================+================+=======+==========+=======+============
+    ...
+    
+Get Unanswered Posts
+^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    piazza unanswered
+    
+::
+
+    >piazza unanswered
+    
+    Subject: FAQ: Do I need to add an abstract?
+    Author: Greg Stephens
     ...
 
 Flask Server
@@ -405,6 +416,16 @@ Flask Server
     piazza flask
     
 Runs on http://127.0.0.1:5000/ by default. Flask routes are based on DOCOPT. Navigating to the index will display available routes.
+
+Change Configuration Item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+    piazza config <section> <item> --value=<value> 
+    
+Change network ID to new class::
+
+    piazza config network id --value=irqfvh1ctrg2vt
 
 Configuration
 ===============
