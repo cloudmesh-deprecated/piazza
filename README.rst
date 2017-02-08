@@ -162,7 +162,7 @@ Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
 
 .. image:: images/participation.svg
 
-Image: `participation.png <images/participation.png>`_
+Image: `participation.svg <images/participation.svg>`_
 
 Get Folders
 ^^^^^^^^^^^^^^^^
