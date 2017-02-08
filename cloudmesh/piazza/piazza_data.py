@@ -1,6 +1,7 @@
 import os, datetime, re, textwrap
 from bs4 import BeautifulSoup
 import pymongo
+import pygal
 
 import config
 
@@ -367,32 +368,20 @@ class PiazzaData:
             else:
                 print '"{folder}" incomplete'.format(folder = folder)
                 
-    def visualize_participation(self, folder, num_students):
-        '''Get participation for folder
-        Args:
-            folder (string) -- Piazza folder
-            num_students (int) -- number of all (known) students
+    def class_participation(self):
+        '''Get participation for class by folder
         '''
-        completion = {}
+        participation = {}
         
         for post in self.data:
             folders = post['folders']
             for f in folders:
-                if(f not in completion):
-                    completion[f] = []
-                completion[f].append(post['author_id'])
-        
-        total = 0   
-        for key, value in completion.iteritems():
-            folder_participation = round((float(len(set(value)))/num_students) * 100)
-            total += folder_participation
-            completion[key] = folder_participation 
-            
-        average = total / len(completion)
-        
-        print folder, completion[folder], average
-                
-        return PiazzaData({'data': [{'Folder': folder, 'Freq': completion[folder]}, {'Folder': 'Average', 'Freq': average}]})
+                if(f not in participation):
+                    participation[f] = 1
+                else:
+                    participation[f] += 1
+
+        return PiazzaData([{'label': k, 'values': [v]} for k, v in participation.iteritems()])
                 
     def print_participation(self, folder, users, detailed = False, posted = ''):
         '''print folder participation
@@ -481,7 +470,27 @@ class PiazzaData:
             print 'Author ID: ' + comment['uid'] if 'uid' in comment else '(none)'
             print 'Comment: ' + subject
             print 'Created: ' + self.convert_date(comment['created'])
-            print       
+            print    
+            
+    def chart(self, chart_type = '', title = '', opts = {}, browser = True):
+        '''Create pygal chart
+        Args:
+            chart_type (string) -- type of chart
+            title (string) -- chart title
+            opts (dict) -- options passed into chart variable
+        '''
+        if(chart_type.lower() == 'bar'):
+            chart = pygal.Bar(**opts)
+        elif(chart_type.lower() == 'pie'):
+            chart = pygal.Pie(**opts)
+            
+        chart.title = title
+
+        for row in self.data:
+            chart.add(row['label'], row['values'])
+        
+        if(browser):    
+            chart.render_in_browser() 
         
     def convert_date(self, date):
         '''Convert date to readable

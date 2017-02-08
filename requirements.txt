@@ -5,3 +5,5 @@ grequests
 bs4
 pymongo
 Flask
+pygal
+lxml

@@ -2,7 +2,7 @@
 
 Usage:
     piazza.py get <folder> [--comments]
-    piazza.py show <folder> <visual>
+    piazza.py show <visual> [--folder=<folder> --chart=<chart>]
     piazza.py folders
     piazza.py posts <cids> [--comments]
     piazza.py history (--user=<user>|--uid=<uid>) [--detailed --comments]
@@ -26,14 +26,15 @@ Options:
     -v --version            version information
     --comments              show/use/include comments
     --detailed              show full post information
+    --folder=<folder>       Piazza folder
+    --chart=<chart>         chart type ("bar", "pie", etc) *attempting to force an incompatible type may cause errors
     --role=<role>           class role (student, instructor, etc) [default: student]
     --author=<author>       author name/id
     --sort=<sort>           column to sort results by
-    --posted=<posted>       filter by whether or not user posted "yes" or "no"
+    --posted=<posted>       filter by whether or not user posted ("yes" or "no")
     --value=<value>         new value
     
 Arguments:
-    folder:         Piazza folder
     visual:         visualization type to return ("word cloud")
     cids:           post cid's, separated by commas
     user:           user name

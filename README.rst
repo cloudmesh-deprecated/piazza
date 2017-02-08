@@ -54,11 +54,11 @@ On Mac OS X do**::
     cd quickstart
     sudo bash mac.sh
     
-** Currently, Mac OSX quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data folders.
+** Currently, Mac OSX quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data directories created.
     
 Install Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
-Install Piazza Miner and follow directions to complete `piazza.cfg <piazza_miner/includes/piazza.cfg>`_::
+Install Piazza Miner and follow directions to complete `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_::
 
     piazza install
 
@@ -68,7 +68,7 @@ Before Piazza Miner can be run, the MongoDB server must be running. Use bind_ip 
    
     sudo mongod --bind_ip 127.0.0.1 --dbpath ~/piazza/data
     
-Use --port flag if you need to specify the port. However, you must also change the port setting in `piazza.cfg <piazza_miner/includes/piazza.cfg>`_ 
+Use --port flag if you need to specify the port. However, you must also change the port setting in `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ 
 
 Setup Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
@@ -160,7 +160,7 @@ Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
 
 "participation":
 
-.. image:: images/participation.png
+.. image:: images/participation.svg
 
 Image: `participation.png <images/participation.png>`_
 
@@ -284,7 +284,7 @@ Shows students who have posted in a folder::
 Student completion
 ^^^^^^^^^^^^^^^^^^^^
 
-Numbers of folders from "mandatory" field in `piazza.cfg <piazza_miner/includes/piazza.cfg>`_ that student has posted in::
+Numbers of folders from "mandatory" field in `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ that student has posted in::
 
     piazza completion (--user=<user>|--uid=<uid>)
     
@@ -431,7 +431,7 @@ Configuration
 ===============
 
 The configuration is done with the help of the 
-`piazza.cfg <piazza_miner/includes/piazza.cfg>`_ file. 
+`piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ file. 
 
 
 To set the login information modify the login section::

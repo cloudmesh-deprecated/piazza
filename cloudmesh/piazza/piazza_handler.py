@@ -133,26 +133,19 @@ class PiazzaHandler:
             t = self.html_from_template('posts.html', posts = d.data, comments = comments)
             self.write_file('folders/' + folder + '/posts.html', t)         
 
-    def show(self, visual = '', folder = '', flask = False):
+    @no_flask
+    def show(self, visual = '', folder = '', chart = ''):
         '''Show visual for folder
         Args:
             visual (string) -- visual to show
             folder (string) -- folder posts to analyze
         '''
-        js = ['d3.js']
         visual_trimmed = visual.replace(' ', '').replace('-', '')
         if(visual_trimmed == 'wordcloud'):
             d = PiazzaData(self.mongo.find('posts', {'folders': folder}, {'_id': 0})).word_count()
-            js += ['d3.layout.cloud.js', 'word-cloud.js']
         elif(visual_trimmed == 'participation'):
-            d = PiazzaData(self.mongo.find('posts')).visualize_participation(folder, self.mongo.find('piazza_users', {'role': 'student'}).count())
-            js += ['barchart.js'] 
-           
-        if(flask):
-            return render_template('visual.html', visual = visual, folder = folder, data = d.data, js = js, root = '')
-        else:
-            t = self.html_from_template('visual.html', visual = visual, folder = folder, data = d.data, js = js, root = 'file://' + os.path.dirname(sys.modules[__name__].__file__))
-            self.write_file('folders/' + folder + '/' + visual_trimmed + '.html', t)
+            chart_type = chart if chart else 'bar'
+            d = PiazzaData(self.mongo.find('posts')).class_participation().chart(chart_type, opts = {'height': 400}, title = 'Class Participation') 
             
     def folders(self, flask = False):
         '''Display available folders
