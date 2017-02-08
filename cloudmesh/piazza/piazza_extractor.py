@@ -208,7 +208,10 @@ class PiazzaExtractor:
                                 break
                                 
                         if(not exists):
-                            post['name'] = '(anonymous)'
+                            if(value):
+                                post['author'] = '(deleted)'
+                            else:
+                                post['author'] = '(anonymous)'
                                 
                     elif(key == 'author_id'):
                         exists = False
@@ -219,7 +222,10 @@ class PiazzaExtractor:
                                 break
                         
                         if(not exists):
-                            post['author'] = '(anonymous)'
+                            if(value):
+                                post['author'] = '(deleted)'
+                            else:
+                                post['author'] = '(anonymous)'
                                 
                     if(isinstance(value, dict)):
                         insert_names(value) 
