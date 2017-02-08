@@ -475,3 +475,19 @@ students have completed, set the folders section::
     
     # mandatory folders for completion, separated by commas
     mandatory =
+    
+-----
+
+Original Proposal
+-------------------
+
+Electronic learning tools have become ubiquitous in modern classrooms. One such tool is Piazza, a discussion board where students can interact with each other and ask questions of their instructors. While student/instructor discussion is the main goal of Piazza, the data produced from the discussions can be just as valuable. For this project, we will be data mining Piazza discussions, using Python, and analyzing that data to produce relevant visuals and statistics. We will construct a Python tool "piazza" for the purposes of:
+
+- Extracting data from Piazza
+- Scrubbing the data to get important and readable information
+- Analyzing the data 
+- Visualizing the data
+
+To begin, we wrote a Python program to mine data from Piazza. Piazza has an internal API that it communicates with via XMLHttpRequest, or AJAX, requests to retrieve and display information to the user. We were able to track these requests by monitoring the network requests in Google Chrome Developer Tools. The network requests also display the POST information that is sent to the server. Using the URLs and POST request data, we were able to recreate Piazza's API using the third-party Python "requests" and "grequests" modules.
+
+The JSON data will then be scrubbed and placed into a MongoDB database. From there, relevant information will be queried to be used for class analysis and visuals.
