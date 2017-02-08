@@ -201,7 +201,7 @@ class PiazzaHandler:
         if(flask):
             return render_template('table.html', fields = d.get_fields(), rows = d.data)
         else:
-            d.print_table()
+            d.print_table(order = ['name', 'id'])
     
     @no_flask    
     def search(self, users = False, post = False, subject = False, everything = False, comment = False, query = '', user = '', uid = ''):
