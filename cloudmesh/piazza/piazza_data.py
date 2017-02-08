@@ -201,7 +201,7 @@ class PiazzaData:
                 fields += post.keys()
             fields = list(set(fields))
 
-            lengths = {x: len(x) + 1 for x in fields}
+            lengths = {x: len(x) for x in fields}
             
             # sort fields
             for key in reversed(order):
@@ -214,22 +214,22 @@ class PiazzaData:
                 for key, value in row.iteritems():
                     length = len(str(value))
                     if(length > lengths[key]):
-                        lengths[key] = length + 1
+                        lengths[key] = length 
               
             # add headers            
             rows = [{x: x for x in lengths.keys()}] + self.data
             
             # create table
-            table = '=' * (sum(lengths.values()) + len(lengths.values()) * 2 + 1) + '\n'
+            table = '=' * (sum(lengths.values()) + len(lengths.values()) * 3 + 1) + '\n'
             for row in rows:
                 table += '|'  
                 for key in fields:
                     display = str(row[key]) if key in row else ''
                     difference = lengths[key] - len(display)
-                    table += difference * ' ' + display + ' |'
+                    table += difference * ' ' + ' ' + display + ' |'
                 table += '\n='
                 for field in fields:
-                    table += '=' * (lengths[field] + 1) + '+'
+                    table += '=' * (lengths[field] + 2) + '+'
                 table = table[:-1] + '='
                 table += '\n'
             
