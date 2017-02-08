@@ -47,12 +47,11 @@ which is provided.
 
 On Ubuntu do::
    
-    bash quickstart/ubuntu.sh
+    bash bin/quickstart/ubuntu.sh
     
 On Mac OS X do**::
     
-    cd quickstart
-    sudo bash mac.sh
+    bash bin/quickstart/mac.sh
     
 ** Currently, Mac OSX quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data directories created.
     

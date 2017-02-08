@@ -31,7 +31,7 @@ class PiazzaSetup:
     def install(self):
         '''Move necessary files to new folder
         '''
-        install = self.get_y_n('Do you wish to install Piazza Miner to {folder}'.format(folder = os.path.expanduser('~/piazza/piazza.cfg')))
+        install = self.get_y_n('Do you wish to install Piazza Miner to {folder}'.format(folder = os.path.expanduser('~/piazza')))
         if(install):
             self.move_files()
             self.modify_config()
@@ -67,7 +67,7 @@ class PiazzaSetup:
         if(modify): 
             email = raw_input('[piazza] Enter your Piazza login email: ')
             password = getpass.getpass('[piazza] Enter your Piazza login password: ')
-            nid = raw_input('[piazza] Enter the Piazza network/class ID (default is "irqfvh1ctrg2vt"): ')
+            nid = raw_input('[piazza] Enter the Piazza network/class ID (default is "ix39m27czn5uw"): ')
             
             nid = nid if nid else config.get('network', 'id')
 

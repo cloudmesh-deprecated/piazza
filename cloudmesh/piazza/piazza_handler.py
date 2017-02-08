@@ -33,12 +33,18 @@ class PiazzaHandler:
                 self.install()
                 self.install_complete = True
                 return
+        else:
+            self.install()
+            return
         
         if(not arguments['setup']):    
             if(PiazzaSetup().needs_setup()):
                 self.setup()
                 self.setup_complete = True
                 return
+        else:
+            self.setup()
+            return
 
         self.mongo = PiazzaMongo()
         
@@ -46,6 +52,9 @@ class PiazzaHandler:
             if(self.mongo.check_update()):
                 self.update()
                 self.update_complete = True
+        else:
+            self.update()
+            return
             
         self.app = Flask(__name__)      
         
