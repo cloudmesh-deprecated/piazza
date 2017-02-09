@@ -11,7 +11,7 @@ Contributors:
 
   
 Installation
-------------
+=============
 
 Limitations:
    The instructions provided here are for Ubuntu and Mac OS X only.
@@ -87,7 +87,7 @@ number of posts::
 -----
 
 Usage
------
+=====
 
 When entering commands in the command line, note that the --user flag can be given as a search for a user if the uid is unknown. If more than one user is found with the given criteria, you will be given a list of options.
 
@@ -342,7 +342,6 @@ Example::
     Content: Sensors provide the ability to gather data remotely...
     ...
 
-
 User interaction
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -367,7 +366,6 @@ Lists interaction with other users, descending.
     |                         Lan Qing | is6projk8es1vy |    34 |
     ===================================+================+========
     ...
-
 
 Class Activity
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -395,11 +393,7 @@ Display activity sorted by likes::
     
 Get Unanswered Posts
 ^^^^^^^^^^^^^^^^^^^^^^
-
-::
-
-    piazza unanswered
-    
+ 
 ::
 
     >piazza unanswered
@@ -429,6 +423,8 @@ Change Configuration Item
 Change network ID to new class::
 
     piazza config network id --value=irqfvh1ctrg2vt
+    
+-----
 
 Configuration
 ===============
