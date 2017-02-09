@@ -488,7 +488,7 @@ class PiazzaData:
 
         for row in self.data:
             chart.add(row['label'], row['values'])
-        
+
         if(browser):    
             chart.render_in_browser() 
         

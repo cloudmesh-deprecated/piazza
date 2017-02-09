@@ -159,9 +159,9 @@ Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
 
 "participation":
 
-.. image:: images/participation.svg
+.. image:: images/participation.png
 
-Image: `participation.svg <images/participation.svg>`_
+Image: `participation.svg <images/participation.png>`_
 
 Get Folders
 ^^^^^^^^^^^^^^^^
