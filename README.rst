@@ -11,7 +11,7 @@ Contributors:
 
   
 Installation
-=============
+============
 
 Limitations:
    The instructions provided here are for Ubuntu and Mac OS X only.
@@ -24,7 +24,7 @@ First you have to clone the repository::
     git clone https://github.com/cloudmesh/piazza.git
 
 Install pip if Necessary
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Ubuntu do::
 
@@ -107,7 +107,7 @@ Search::
     2) Name: Leslie Ann, ID: is6mhd5oay3c2
 
 Install Piazza Miner
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 ::
    
@@ -166,7 +166,7 @@ Image: `word-cloud.png <images/word-cloud.png>`_
 Image: `participation.png <images/participation.png>`_
 
 Get Folders
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 Get list of folders::
 
@@ -184,7 +184,7 @@ Output::
     ...
 
 Get Posts
-^^^^^^^^^^^^^^^^
+^^^^^^^^^
 
 Get posts by CID::
     
@@ -212,14 +212,14 @@ Example::
 --comments flag shows post comments.
 
 List Students
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 List all students alphabetically::
 
    piazza list students
    
 Find User Information
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Find users by name::
     
@@ -237,7 +237,7 @@ Example::
 
    
 Search
-^^^^^^^^
+^^^^^^
 
 Search posts, comments, or post subjects. Everything searches in posts, subjects, and comments. Posts, subjects, and comments will be listed in the command line with the query highlighted. Optional --user and --uid flags will filter results only by given author::
 
@@ -257,7 +257,7 @@ Example::
 
 
 Class participation for folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Shows students who have posted in a folder::
    
@@ -282,7 +282,7 @@ Shows students who have posted in a folder::
 
 
 Student completion
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 Numbers of folders from "mandatory" field in `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ that student has posted in::
 
@@ -313,7 +313,7 @@ Output::
     "d14" completed on 2016-12-03T18:57:49Z
 
 Student history
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 Show user post history::
 
@@ -343,7 +343,7 @@ Example::
     ...
 
 User interaction
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 ::
 
@@ -368,7 +368,7 @@ Lists interaction with other users, descending.
     ...
 
 Class Activity
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 ::
 
@@ -392,7 +392,7 @@ Display activity sorted by likes::
     ...
     
 Get Unanswered Posts
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
  
 ::
 
@@ -403,7 +403,7 @@ Get Unanswered Posts
     ...
 
 Flask Server
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 ::
 
@@ -414,7 +414,7 @@ Runs on http://127.0.0.1:5000/ by default. Flask routes are based on DOCOPT. Nav
 **the Flask server is currently a WIP and not recommended. Very few features are available.
 
 Change Configuration Item
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -427,7 +427,7 @@ Change network ID to new class::
 -----
 
 Configuration
-===============
+=============
 
 The configuration is done with the help of the 
 `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ file. 
@@ -479,7 +479,7 @@ students have completed, set the folders section::
 -----
 
 Original Proposal
--------------------
+=================
 
 Electronic learning tools have become ubiquitous in modern classrooms. One such tool is Piazza, a discussion board where students can interact with each other and ask questions of their instructors. While student/instructor discussion is the main goal of Piazza, the data produced from the discussions can be just as valuable. For this project, we will be data mining Piazza discussions, using Python, and analyzing that data to produce relevant visuals and statistics. We will construct a Python tool "piazza" for the purposes of:
 
