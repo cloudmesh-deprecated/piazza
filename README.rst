@@ -478,6 +478,14 @@ students have completed, set the folders section::
     
 -----
 
+Future Features
+===============
+
+- Working install for Mac OS X
+- Flask server complete
+
+-----
+
 Original Proposal
 =================
 
