@@ -83,6 +83,8 @@ updated. This could take some time depending on connection speed and
 number of posts::
 
     piazza update
+    
+-----
 
 Usage
 -----
@@ -415,10 +417,13 @@ Flask Server
     
 Runs on http://127.0.0.1:5000/ by default. Flask routes are based on DOCOPT. Navigating to the index will display available routes.
 
+**the Flask server is currently a WIP and not recommended. Very few features are available.
+
 Change Configuration Item
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
+
     piazza config <section> <item> --value=<value> 
     
 Change network ID to new class::
