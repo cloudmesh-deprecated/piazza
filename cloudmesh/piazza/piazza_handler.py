@@ -200,13 +200,17 @@ class PiazzaHandler:
             e.login()
             e.get_all_posts()
      
-    def list(self, users = True, role = 'student', flask = False):
+    def list(self, users = True, role = '', flask = False):
         '''List all users, filtered by role
         Args:
             role (string) -- role in piazza
             users (bool) -- list users (not implemented)
         '''
-        d = PiazzaData(self.mongo.find('piazza_users', {'role': role}, {'_id': 0}, sort = 'ascending'))
+        if(role):
+            d = PiazzaData(self.mongo.find('piazza_users', {'role': role}, {'_id': 0}, sort = 'ascending'))
+        else:
+            d = PiazzaData(self.mongo.find('piazza_users', {}, {'_id': 0}, sort = 'ascending'))
+            
         if(flask):
             return render_template('table.html', fields = d.get_fields(), rows = d.data)
         else:

@@ -28,7 +28,7 @@ Options:
     --detailed              show full post information
     --folder=<folder>       Piazza folder
     --chart=<chart>         chart type ("bar", "pie", etc) *attempting to force an incompatible type may cause errors
-    --role=<role>           class role (student, instructor, etc) [default: student]
+    --role=<role>           class role (student, instructor, etc)
     --author=<author>       author name/id
     --sort=<sort>           column to sort results by
     --posted=<posted>       filter by whether or not user posted ("yes" or "no")
