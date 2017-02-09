@@ -59,7 +59,7 @@ On Mac OS X do**::
     
     bash bin/quickstart/mac.sh
     
-** Currently, Mac OSX quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data directories created.
+** Currently, Mac OS X quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data directories created.
     
 Install Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
@@ -150,10 +150,10 @@ Download posts from folder as html::
 
 This file will be saved in your config path folder/(folder)/posts.html. --comments includes comments.
 
-Show visual for folder
-^^^^^^^^^^^^^^^^^^^^^^
+Show visual
+^^^^^^^^^^^
 
-Open temporary file (in viewer or browser) for folder visual.
+Open temporary file (in viewer or browser) of visual. --folder flag specfies which folder to use.
 
 ::
    
@@ -165,7 +165,7 @@ Open temporary file (in viewer or browser) for folder visual.
 
 Image: `word-cloud.png <images/word-cloud.png>`_
 
-"participation":
+"participation" (no folder required):
 
 .. image:: images/participation.png
 
