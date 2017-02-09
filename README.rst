@@ -19,8 +19,14 @@ Limitations:
 Clone Gitlab Repository
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-First you have to clone the repository::
+First you have to clone the repository
+
+SSH::
    
+    git clone git@github.com:cloudmesh/piazza.git
+    
+HTTPS::
+
     git clone https://github.com/cloudmesh/piazza.git
 
 Install pip if Necessary
