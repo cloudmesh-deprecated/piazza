@@ -30,7 +30,6 @@ setup(
     package_data = {
         'cloudmesh.piazza': [
             'includes/*',
-            'static/*',
             'templates/*'
     ]},    
     platforms='any',

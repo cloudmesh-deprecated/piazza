@@ -145,23 +145,23 @@ This file will be saved in your config path folder/(folder)/posts.html. --commen
 Show visual for folder
 ^^^^^^^^^^^^^^^^^^^^^^
 
+Open temporary file (in viewer or browser) for folder visual.
+
 ::
    
-    piazza show <visual> for <folder>
+    piazza show <visual> [--folder]
 
-This file will be saved in /folders/(folder)/(visual).html.
+"word cloud" (folder required):
 
-"word cloud":
+.. image:: images/word-cloud.png
 
-.. image:: images/word-cloud-screenshot.png
-
-Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
+Image: `word-cloud.png <images/word-cloud.png>`_
 
 "participation":
 
 .. image:: images/participation.png
 
-Image: `participation.svg <images/participation.png>`_
+Image: `participation.png <images/participation.png>`_
 
 Get Folders
 ^^^^^^^^^^^^^^^^

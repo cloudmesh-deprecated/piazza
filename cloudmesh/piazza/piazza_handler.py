@@ -151,7 +151,10 @@ class PiazzaHandler:
         '''
         visual_trimmed = visual.replace(' ', '').replace('-', '')
         if(visual_trimmed == 'wordcloud'):
-            d = PiazzaData(self.mongo.find('posts', {'folders': folder}, {'_id': 0})).word_count()
+            if(not folder):
+                print 'Error: Please specify a folder using the --folder flag'
+            else:
+                d = PiazzaData(self.mongo.find('posts', {'folders': folder}, {'_id': 0, 'content': 1})).word_cloud()
         elif(visual_trimmed == 'participation'):
             chart_type = chart if chart else 'bar'
             d = PiazzaData(self.mongo.find('posts')).class_participation().chart(chart_type, opts = {'height': 400}, title = 'Class Participation') 

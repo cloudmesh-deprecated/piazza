@@ -1,7 +1,10 @@
 import os, datetime, re, textwrap
 from bs4 import BeautifulSoup
+from wordcloud import WordCloud, STOPWORDS
 import pymongo
 import pygal
+import tempfile 
+import webbrowser 
 
 import config
 
@@ -37,33 +40,28 @@ class PiazzaData:
 
         return BeautifulSoup(html, 'html.parser').get_text()
                     
-    def word_count(self):
-        '''Get word count of self.data 'posts'
-        Returns:
-            (PiazzaData) -- word: count
+    def word_cloud(self):
+        '''Get word cloud of self.data
         '''
-        ignore = ['the', 'for','what', 'which', 'why', 'that', 'and', 'you', 'can', 'also', 'let', 'are', 'any', 'but', 'like', 'all', 'out', 'may', 'get', 'this', 'when', 'some', 'not', 'will', 'use', 'was', 'have', 'there', 'our', 'its', 'how', 'been', 'with', 'has', 'these', 'they', 'each', 'into', 'there', 'who', 'from', 'many', 'one', 'more', 'need', 'would', 'most', 'their', 'about', 'being', 'every', 'where', 'them', 'such', 'using', 'really']
-        punc = ['.', ',', '?', '/', '"', "'", '(', ')', '!', '~', '}', ']', ':']
-        words = {}
+        words = ''
+        
         for item in self.data:
-            word_list = self.clean_html(item['content']).split(' ')
-            for w in word_list:
-                w = w.lower()         
-                for p in punc:
-                    w = w.replace(p, '') # remove punctuation
-                    
-                if(w in ignore or w.isdigit() or len(w) < 3 or w.startswith('{') or w.startswith('[') or w.startswith('http') or w.startswith('@')):
-                    continue
-                elif(w in words):
-                    words[w] += 1
-                else:
-                    words[w] = 1
-                    
-        tags = []
-        for k, v in words.iteritems():
-            tags.append({'key': k, 'value': v})
-                    
-        return PiazzaData({'tags': tags})
+            text = self.clean_html(item['content'])
+            words += text
+            
+        if(len(words) > 0):        
+            stopwords = set(STOPWORDS)
+            stopwords.update(['io', 'ir', 'https', 'will', 'also'])
+
+            wc = WordCloud(stopwords=stopwords, width=800, height=400).generate(words)
+
+            tmp = tempfile.NamedTemporaryFile(delete=False)
+            path = tmp.name + '.png'
+
+            wc.to_file(path)
+            webbrowser.open('file://' + path)           
+        else:
+            print '[piazza] Error: no words, most likely an incorrect folder name was given'
         
     def get_folders(self):
         folders = {}

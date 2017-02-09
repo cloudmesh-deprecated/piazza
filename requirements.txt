@@ -7,3 +7,6 @@ pymongo
 Flask
 pygal
 lxml
+wordcloud
+numpy
+Pillow
