@@ -5,3 +5,8 @@ grequests
 bs4
 pymongo
 Flask
+pygal
+lxml
+wordcloud
+numpy
+Pillow

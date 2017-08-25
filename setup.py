@@ -15,7 +15,6 @@ version = "0.0.7"
 install_requires = read("requirements.txt").split()
 long_description = read('README.rst')
 
-
 setup(
     name='cloudmesh-piazza',
     version=version,
@@ -26,11 +25,11 @@ setup(
     install_requires=install_requires,
     description="Command line client for Piazza",
     long_description=long_description,
-     packages=find_packages(),
+    # packages=find_packages(),
+    packages=['cloudmesh.piazza'],
     package_data = {
         'cloudmesh.piazza': [
             'includes/*',
-            'static/*',
             'templates/*'
     ]},    
     platforms='any',
@@ -51,5 +50,5 @@ setup(
             'piazza = cloudmesh.piazza.piazza:main',
         ],
     },
-    namespace_packages=['cloudmesh'],    
+    namespace_packages=['cloudmesh']    
 )

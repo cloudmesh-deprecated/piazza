@@ -11,7 +11,7 @@ Contributors:
 
   
 Installation
-------------
+============
 
 Limitations:
    The instructions provided here are for Ubuntu and Mac OS X only.
@@ -19,16 +19,18 @@ Limitations:
 Clone Gitlab Repository
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-First you have to clone the repository either with::
+First you have to clone the repository
+
+SSH::
    
-    git clone git@gitlab.com:cloudmesh/piazza.git
+    git clone git@github.com:cloudmesh/piazza.git
+    
+HTTPS::
 
-or::
-
-    git clone https://gitlab.com/cloudmesh/piazza.git
+    git clone https://github.com/cloudmesh/piazza.git
 
 Install pip if Necessary
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Ubuntu do::
 
@@ -39,8 +41,9 @@ Install Piazza Miner from setup.py
 
 From within the project directory call the install::
 
-    cd piazza/project_piazza
     sudo python setup.py install
+    
+*note: due to gevent compilation, install may take a few minutes.
     
 Install MongoDB (if not already installed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,16 +53,17 @@ which is provided.
 
 On Ubuntu do::
    
-    bash quickstart/ubuntu.sh
+    bash bin/quickstart/ubuntu.sh
     
-On Mac OS X do::
+On Mac OS X do**::
     
-    cd quickstart
-    sudo bash mac.sh
+    bash bin/quickstart/mac.sh
+    
+** Currently, Mac OS X quickstart is not fully working. You will need to install MongoDB to enable the "mongod" command and ensure that you have ~/piazza and ~/piazza/data directories created.
     
 Install Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
-Install Piazza Miner and follow directions to complete `piazza.cfg <piazza_miner/includes/piazza.cfg>`_::
+Install Piazza Miner and follow directions to complete `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_::
 
     piazza install
 
@@ -69,7 +73,7 @@ Before Piazza Miner can be run, the MongoDB server must be running. Use bind_ip 
    
     sudo mongod --bind_ip 127.0.0.1 --dbpath ~/piazza/data
     
-Use --port flag if you need to specify the port. However, you must also change the port setting in `piazza.cfg <piazza_miner/includes/piazza.cfg>`_ 
+Use --port flag if you need to specify the port. However, you must also change the port setting in `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ 
 
 Setup Piazza Miner
 ^^^^^^^^^^^^^^^^^^^^
@@ -85,35 +89,31 @@ updated. This could take some time depending on connection speed and
 number of posts::
 
     piazza update
+    
+-----
 
 Usage
------
+=====
 
 When entering commands in the command line, note that the --user flag can be given as a search for a user if the uid is unknown. If more than one user is found with the given criteria, you will be given a list of options.
 
 ID::
 
-    piazza history --uid is6mhd3ojax6e5
+    piazza history --uid is6mhd3oax6e5
 
-    User: Timothy Whitson
+    User: Lee Riley
 
 Search::
 
-    piazza history --user ti
+    piazza history --user le
 
     Multiple users found. Select one:
-    0) Name: Aditya Tanikanti, ID: is69ir89d4S
-    1) Name: Avadhoot Agasti, ID: is6lom66ah456j
-    2) Name: Claude Bernard Augustin, ID: is6prr8ps1v1xi
-    3) Name: Neelam Tikone, ID: igwsx64x3qb682
-    4) Name: Niteesh Kumar Akurati, ID: is6pcsy0etr1j7
-    5) Name: Nitin Sharma, ID: i4u5elhtfg14xr
-    6) Name: Shweta Bhartia, ID: is6prnkbzvy1v7
-    7) Name: Timothy Whitson, ID: is6mhd3ojax6e5
-    8) Name: Vidya Patil, ID: is6n7b7ylJ9
+    0) Name: Lee Riley, ID: is6mhd3oax6e5
+    1) Name: Lee Tao, ID: is6lom66ah46j
+    2) Name: Leslie Ann, ID: is6mhd5oay3c2
 
 Install Piazza Miner
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 ::
    
@@ -150,29 +150,29 @@ Download posts from folder as html::
 
 This file will be saved in your config path folder/(folder)/posts.html. --comments includes comments.
 
-Show visual for folder
-^^^^^^^^^^^^^^^^^^^^^^
+Show visual
+^^^^^^^^^^^
+
+Open temporary file (in viewer or browser) of visual. --folder flag specfies which folder to use.
 
 ::
    
-    piazza show <visual> for <folder>
+    piazza show <visual> [--folder]
 
-This file will be saved in /folders/(folder)/(visual).html.
+"word cloud" (folder required):
 
-"word cloud":
+.. image:: images/word-cloud.png
 
-.. image:: images/word-cloud-screenshot.png
+Image: `word-cloud.png <images/word-cloud.png>`_
 
-Image: `wordcloud.png <images/word-cloud-screenshot.png>`_
-
-"participation":
+"participation" (no folder required):
 
 .. image:: images/participation.png
 
 Image: `participation.png <images/participation.png>`_
 
 Get Folders
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 Get list of folders::
 
@@ -188,10 +188,9 @@ Output::
     |     polls |     2 |
     ============+========
     ...
-   
 
 Get Posts
-^^^^^^^^^^^^^^^^
+^^^^^^^^^
 
 Get posts by CID::
     
@@ -201,16 +200,16 @@ Example::
     
     >piazza posts "275, 110"
     
-    Subject: Tim Whitson - Where are Big Data jobs now and in the future?
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Lee Riley - Where are Big Data jobs now and in the future?
+    Author: Lee Riley
+    Author ID: is6mhd3oax6e5
     Post CID: 275
     Created: Sep 02, 2016 05:23PM
     Content: ...
     
-    Subject: Whitson, Timothy - Why Big Data is interesting to me
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Riley, Lee - Why Big Data is interesting to me?
+    Author: Lee Riley
+    Author ID: Lee Riley, ID: is6mhd3oax6e5
     Post CID: 110
     Created: Aug 26, 2016 03:35AM
     Content: ...
@@ -219,14 +218,14 @@ Example::
 --comments flag shows post comments.
 
 List Students
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 List all students alphabetically::
 
    piazza list students
    
 Find User Information
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Find users by name::
     
@@ -234,17 +233,17 @@ Find users by name::
     
 Example::    
 
-    >piazza find timothy
+    >piazza find "lee riley"
     
     ====================================================================================
     |            name | admin | photo |    us |    role | facebook_id |             id |
     ==================+=======+=======+=======+=========+=============+=================
-    | Timothy Whitson | False |  None | False | student |        None | is6mhd3ojax6e5 |
+    |       Lee Riley | False |  None | False | student |        None |  is6mhd3oax6e5 |
     ====================================================================================
 
    
 Search
-^^^^^^^^
+^^^^^^
 
 Search posts, comments, or post subjects. Everything searches in posts, subjects, and comments. Posts, subjects, and comments will be listed in the command line with the query highlighted. Optional --user and --uid flags will filter results only by given author::
 
@@ -254,17 +253,17 @@ Example::
 
     >piazza search subjects "big data"
     
-    Subject: Jing Chen: Big Data Technologies
-    Author: Jing Chen
-    Author ID: ijbn2h6lVdQ
+    Subject: Ann Chen: Big Data Technologies
+    Author: Ann Chen
+    Author ID: ijbn2h6lNdQ
     Post CID: 1719
     Created: Dec 08, 2016 08:49PM
-    Content: There are various new technologies in big data application and analysis including k-mean, hadoop and MapReduce...   
+    Content: There are various new technologies in big data application...  
     ...
 
 
 Class participation for folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Shows students who have posted in a folder::
    
@@ -279,19 +278,19 @@ Shows students who have posted in a folder::
     ========================================================================
     |                             name |            uid | posts | comments |
     ===================================+================+=======+===========
-    |                Emmanuel Ngalamou | is7t457w1wg3a5 |     3 |        6 |
+    |                   Nathan Emanuel | is7t457w1xg3a5 |     3 |        6 |
     ===================================+================+=======+===========
-    |                     Sushmita Ray | is6bgmnu3hl753 |     2 |        9 |
+    |                        Ray Sushi | is6bgmnu3hk753 |     2 |        9 |
     ===================================+================+=======+===========
-    |                         Vibhatha | is6ib4tuhum5y4 |     2 |        6 |
+    |                         Pooja He | is6ib4tujum5y4 |     2 |        6 |
     ===================================+================+=======+===========
     ...
 
 
 Student completion
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
-Numbers of folders from "mandatory" field in `piazza.cfg <piazza_miner/includes/piazza.cfg>`_ that student has posted in::
+Numbers of folders from "mandatory" field in `piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ that student has posted in::
 
     piazza completion (--user=<user>|--uid=<uid>)
     
@@ -305,9 +304,9 @@ In piazza.cfg::
     
 Output::
 
-    >piazza completion --user tim
+    >piazza completion --user "lee riley"
     
-    User: Timothy Whitson
+    User: Lee Riley
     Completion: 100.0%
     "d1" completed on 2016-08-26T03:35:43Z
     "d3" completed on 2016-09-02T17:23:07Z
@@ -320,7 +319,7 @@ Output::
     "d14" completed on 2016-12-03T18:57:49Z
 
 Student history
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 Show user post history::
 
@@ -330,28 +329,27 @@ Show user post history::
 
 Example::
 
-    >piazza history --user tim
+    >piazza history --user "lee riley"
     
-    User: Timothy Whitson
+    User: Lee Riley
     User has 15 posts:
-    Posted "Tim Whitson - Sensors" in d14 on Dec 03, 2016 06:57PM
+    Posted "Lee Riley - Sensors" in d14 on Dec 03, 2016 06:57PM
     ...
     
 --detailed::
     
-    >piazza history --user tim --detailed
+    >piazza history --user "lee riley" --detailed
     
-    Subject: Tim Whitson - Sensors
-    Author: Timothy Whitson
-    Author ID: is6mhd3ojax6e5
+    Subject: Lee Riley - Sensors
+    Author: Lee Riley
+    Author ID: is6mhd3oax6e5
     Post CID: 1668
     Created: Dec 12, 2016 04:48PM
     Content: Sensors provide the ability to gather data remotely...
     ...
 
-
 User interaction
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 ::
 
@@ -361,23 +359,22 @@ Lists interaction with other users, descending.
 
 ::
 
-    >piazza interaction --user gregor
+    >piazza interaction --user greg
     
-    User: Gregor von Laszewski
+    User: Greg Stephens
     =============================================================
     |                             name |            uid | count |
     ===================================+================+========
-    |                  Jerome Mitchell | irqfz0l9tur1hv |    64 |
+    |                     Jeremy Myers | irqfz0k9tur1hv |    64 |
     ===================================+================+========
-    |                   Diana Maltsman |    isb62dc7Dd7 |    40 |
+    |                      Don Maltman |    isb62dc7Dd7 |    40 |
     ===================================+================+========
-    |                          Lan Lan | is6proyk8es1vy |    34 |
+    |                         Lan Qing | is6projk8es1vy |    34 |
     ===================================+================+========
     ...
 
-
 Class Activity
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 ::
 
@@ -392,16 +389,27 @@ Display activity sorted by likes::
     ============================================================================================
     |                             name |            uid | posts | comments | likes | favorites |
     ===================================+================+=======+==========+=======+============
-    |                     Mark McCombe |    is6pkgg1YYG |    14 |       79 |     7 |         3 |
+    |                        Lee Riley |  is6mhd3oax6e5 |    14 |       79 |     7 |         3 |
     ===================================+================+=======+==========+=======+============
-    |             Gregor von Laszewski | is28edmcmde4ht |   187 |      687 |     6 |        84 |
+    |                    Greg Stephens | is28edmcmhe4ht |   187 |      687 |     6 |        84 |
     ===================================+================+=======+==========+=======+============
     |                      (anonymous) |           None |    28 |        0 |     4 |         3 |
     ===================================+================+=======+==========+=======+============
     ...
+    
+Get Unanswered Posts
+^^^^^^^^^^^^^^^^^^^^
+ 
+::
+
+    >piazza unanswered
+    
+    Subject: FAQ: Do I need to add an abstract?
+    Author: Greg Stephens
+    ...
 
 Flask Server
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 ::
 
@@ -409,11 +417,26 @@ Flask Server
     
 Runs on http://127.0.0.1:5000/ by default. Flask routes are based on DOCOPT. Navigating to the index will display available routes.
 
+**the Flask server is currently a WIP and not recommended. Very few features are available.
+
+Change Configuration Item
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    piazza config <section> <item> --value=<value> 
+    
+Change network ID to new class::
+
+    piazza config network id --value=irqfvh1ctrg2vt
+    
+-----
+
 Configuration
-===============
+=============
 
 The configuration is done with the help of the 
-`piazza.cfg <piazza_miner/includes/piazza.cfg>`_ file. 
+`piazza.cfg <cloudmesh/piazza/includes/piazza.cfg>`_ file. 
 
 
 To set the login information modify the login section::
@@ -458,3 +481,27 @@ students have completed, set the folders section::
     
     # mandatory folders for completion, separated by commas
     mandatory =
+    
+-----
+
+Future Features
+===============
+
+- Working install for Mac OS X
+- Flask server complete
+
+-----
+
+Original Proposal
+=================
+
+Electronic learning tools have become ubiquitous in modern classrooms. One such tool is Piazza, a discussion board where students can interact with each other and ask questions of their instructors. While student/instructor discussion is the main goal of Piazza, the data produced from the discussions can be just as valuable. For this project, we will be data mining Piazza discussions, using Python, and analyzing that data to produce relevant visuals and statistics. We will construct a Python tool "piazza" for the purposes of:
+
+- Extracting data from Piazza
+- Scrubbing the data to get important and readable information
+- Analyzing the data 
+- Visualizing the data
+
+To begin, we wrote a Python program to mine data from Piazza. Piazza has an internal API that it communicates with via XMLHttpRequest, or AJAX, requests to retrieve and display information to the user. We were able to track these requests by monitoring the network requests in Google Chrome Developer Tools. The network requests also display the POST information that is sent to the server. Using the URLs and POST request data, we were able to recreate Piazza's API using the third-party Python "requests" and "grequests" modules.
+
+The JSON data will then be scrubbed and placed into a MongoDB database. From there, relevant information will be queried to be used for class analysis and visuals.
